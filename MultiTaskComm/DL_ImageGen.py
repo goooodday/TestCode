@@ -12,7 +12,7 @@ RUN_Status = {
 }
 
 
-def DirFileCount(msg, buff):
+def main(msg, buff):
     path_name = msg['file_path']
     tot_files = 0
 
@@ -42,4 +42,4 @@ def DirFileCount(msg, buff):
 # *****************************************************************************
 
 if __name__ == '__main__':
-    DirFileCount('D:/SubDirectoryFiles')
+    main('D:/SubDirectoryFiles')
