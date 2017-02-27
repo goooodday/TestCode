@@ -1,4 +1,9 @@
 
+'''
+    
+    writer : goooodday(hkshin2@gmail.com)
+'''
+
 from flask import Flask, make_response, send_file
 import sys
 import os
@@ -7,14 +12,34 @@ app = Flask(__name__)
 
 IMG_STORAGE = 'D:/Image_Storage'
 
+@app.route("/")
+def homeindex():
+    '''
+    description : Redirection HTTP root path
+    argument    : null
+    '''
+    
+    return imagelist('root')
+
 @app.route("/<dir>/<filename>", methods=['POST', 'GET'])
 def imagefind(dir, filename):
-
+    '''
+    description : Find & Send Image
+    argument    :
+        dir - Image directory path
+        filename - Image file name
+    '''
+    
     imgpath = os.path.join(IMG_STORAGE, dir, filename)    
     return send_file(imgpath, mimetype='image/png')
 
 @app.route("/<path>", methods=['POST', 'GET'])
 def imagelist(path):
+    '''
+    description : Build Web content which directory list or image list 
+    argument    :
+        path - Image directory path    
+    '''
     
     if path == 'root':
         file_list = fileBrowser(IMG_STORAGE)
@@ -40,7 +65,9 @@ def imagelist(path):
 
 
 def fileBrowser(root_path):
+    '''
     
+    '''
     if not os.path.isdir(root_path):
         return 
     
