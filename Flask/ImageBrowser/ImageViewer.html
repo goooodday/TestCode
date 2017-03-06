@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Flask Image Viewer</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='jquery.fancybox.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.fancybox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='socketio.js') }}"></script>
+<script src="{{ url_for('static', filename='ImageViewer.js') }}"></script>
+</head>
+<body>
+    <P>Deep learning</P>
+    <div class="row">
+        <div class="col-lg-2">
+            <h2>{{dataset}}</h2>
+            <ul class="list-group">
+            {% if dirinfo %}
+                {%- for d_item in dirinfo -%}
+                <li class="list-group-item"><a href="#" onClick="getImageList('{{d_item.dirname}}')">{{d_item.dirname}} <span class="badge">{{d_item.count}}</span></a></li>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+        <div class="col-lg-8" id="IMAGE_BOARD">
+          <!-- add Image Link -->     
+        </div>
+    </div>
+
+</body>
+</html>
